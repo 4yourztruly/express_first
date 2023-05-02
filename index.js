@@ -26,8 +26,25 @@ app.get('/bands', (req, res) =>{
     res.json(bands);
 })
 
+
+
 //start the server
 app.listen(3000, () => {
             console.log('Server started on port 3000');
 
 });
+
+app.get('/bands:id', (req, res) => {
+
+    //get url id
+    const id = req.params.id;
+
+    let statement = db.prepare('SELECT * FROM bands WHERE id = :id');
+    let result = statement.all({
+
+        id 
+    });
+
+    //send back band or error
+    res.json(result[0]|| {'Error': 'No band matching id'});
+})
