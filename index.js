@@ -34,7 +34,7 @@ app.listen(3000, () => {
 
 });
 
-app.get('/bands:id', (req, res) => {
+app.get('/bands/:id', (req, res) => {
 
     //get url id
     const id = req.params.id;
@@ -47,4 +47,4 @@ app.get('/bands:id', (req, res) => {
 
     //send back band or error
     res.json(result[0]|| {'Error': 'No band matching id'});
-})
+});
